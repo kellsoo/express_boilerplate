@@ -1,0 +1,28 @@
+{
+  "name": "express_boilerplate",
+  "version": "1.0.0",
+  "description": "Just boilerplate for express server with ejs templating",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index",
+    "dev": "nodemon index"
+  },
+  "keywords": [
+    "express",
+    "boilerplate",
+    "express boilerplate",
+    "MVC",
+    "ejs"
+  ],
+  "author": "kellsoo",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^2.7.1",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.4"
+  }
+}
