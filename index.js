@@ -1,41 +1,52 @@
 // Node core modules
-const path = require('path');
+const path = require("path");
 
 // 3rd party modules
-const express = require('express');
-const bodyParser = require('body-parser');
-
-// Modules
-const mainRoutes = require(path.join(__dirname, 'routes', 'main'));
-const errorController = require(path.join(__dirname, 'controllers', 'error'));
-
+const express = require("express");
+const bodyParser = require("body-parser");
 // Initialize express app
 const app = express();
 
-// ---------- ejs -----------
-app.set('view engine', 'ejs');
-app.set('views')
+// messages
+let messages;
 
-// Body-parser, false means that you cannot parse nested objects!!!!
-app.use(bodyParser.urlencoded({ extended: false }));
+const setGlobalVariables = require(path.join(__dirname, "config", "global-variables")).setGlobalVariables;
+setGlobalVariables()
+    .then((message) => {
+        // Modules
+        const mainRoutes = require(path.join(__routes, "main"));
+        const errorController = require(path.join(__error_controller));
 
-// Set static files
-app.use(express.static(path.join(__dirname, 'public')));
+        // classes
+        messages = require(__messages);
 
-// Environment variables
-const PORT = process.env.PORT || 5000;
-const IP = process.env.ip || 'localhost';
+        // env
+        require(__config_env);
 
-// Main routes
-app.use('/', mainRoutes);
+        console.log(messages.successFirstMethod(message));
 
-// 404 handle
-app.use(errorController.get404);
+        app.set("view engine", "ejs");
+        app.set("views");
 
-// Server listen 
-app.listen(PORT, IP, () => {
-    console.log('-----------------------------------');
-    console.log(`server started on ${IP}:${PORT}...`);
-    console.log('-----------------------------------');
+        // Body-parser, false means that you cannot parse nested objects!!!!
+        app.use(bodyParser.urlencoded({ extended: false }));
 
-});
+        // Set static files
+        app.use(express.static(path.join(__dirname, "public")));
+
+        // Environment variables
+        const PORT = process.env.PORT || 5000;
+        const IP = process.env.ip || "localhost";
+
+        // Main routes
+        app.use("/", mainRoutes);
+
+        // 404 handle
+        app.use(errorController.get404);
+
+        // Server listen
+        app.listen(PORT, IP, () => {
+            console.log(messages.successMethod(`server started on ${IP}:${PORT}...`));
+        });
+    })
+    .catch((err) => console.log(err));
