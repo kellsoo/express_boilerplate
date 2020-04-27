@@ -1,52 +1,48 @@
 const path = require("path");
 
-exports.setGlobalVariables = () => {
-    return new Promise((resolve, reject) => {
-        // ------ ROOT
-        global.__root = path.join(__dirname, "..");
+// ------ ROOT ------
+global.__root = path.join(__dirname, "..");
 
-        // ------ Classes
-        global.__classes = path.join(__root, "classes");
-        global.__messages = path.join(__classes, "Messages");
+// ------ Classes ------
+global.__classes = path.join(__root, "classes");
 
-        // ------ Config
-        global.__config = path.join(__root, "config");
-        global.__config_env = path.join(__config, "config-env");
-        // ------ DB connect
-        global.__connect_db = path.join(__config, "connect-db");
+// ------ Config
+global.__config = path.join(__root, "config");
+global.__config_env = path.join(__config, "config-env");
 
-        // ------ Controllers
-        global.__controllers = path.join(__root, "controllers");
-        global.__error_controller = path.join(__controllers, "error");
+// ------ Controllers
+global.__controllers = path.join(__root, "controllers");
+global.__error_controller = path.join(__controllers, "error");
 
-        // ------ Data
-        global.__data = path.join(__root, "data");
-        global.__fill_data = path.join(__data, "fill_data");
+// ------ Data
+global.__data = path.join(__root, "data");
 
-        // ------ ENV
-        global.__env = path.join(__root, "env");
+// ------ ENV
+global.__env = path.join(__root, "env");
 
-        // ------ Middleware
-        global.__middleware = path.join(__root, "middleware");
+// ------ Functions ------
+global.__functions = path.join(__root, "functions");
+global.__messages = path.join(__functions, "messages");
 
-        // ------ DB models
-        global.__models = path.join(__root, "models");
-        global.__prices_models = path.join(__models, "prices");
-        global.__logger_models = path.join(__models, "logger");
+// ------ Middleware
+global.__middleware = path.join(__root, "middleware");
 
-        // ------ Public
-        global.__public = path.join(__root, "public");
+// ------ DB models
+global.__models = path.join(__root, "models");
 
-        // ------ Routes
-        global.__routes = path.join(__root, "routes");
+// ------ Public
+global.__public = path.join(__root, "public");
 
-        // ------ Util
-        global.__util = path.join(__root, "util");
-        global.__db_handler = path.join(__util, "sequelize-dev");
+// ------ Routes
+global.__routes = path.join(__root, "routes");
 
-        // ------ Views
-        global.__views = path.join(__root, "views");
+// ------ Util
+global.__util = path.join(__root, "util");
+global.__db_handler = path.join(__util, "sequelize-dev");
 
-        resolve("Global variables set...");
-    });
-};
+// ------ Views
+global.__views = path.join(__root, "views");
+// Includes
+global.__includes = path.join(__views, "includes");
+global.__head_include = path.join(__includes, "head");
+global.__end_include = path.join(__includes, "end");
