@@ -26,6 +26,10 @@ global.__messages = path.join(__functions, "messages");
 
 // ------ Middleware
 global.__middleware = path.join(__root, "middleware");
+global.__cors_stop = path.join(__middleware, "cors-stop");
+global.__error_handler = path.join(__middleware, "error-handler");
+global.__is_auth = path.join(__middleware, "is-auth");
+global.__set_multer = path.join(__middleware, "set-multer");
 
 // ------ DB models
 global.__models = path.join(__root, "models");

@@ -5,12 +5,14 @@ const path = require("path");
 const express = require("express");
 const app = express();
 
-// Middleware modules initializing
-const bodyParser = require("body-parser");
-const logger = require("morgan");
-
 // Setting of global variables
 require(path.join(__dirname, "config", "global-variables"));
+
+// Middleware modules
+const bodyParser = require("body-parser");
+const logger = require("morgan");
+const corsStop = require(__cors_stop);
+const errorHandler = require(__error_handler);
 
 // functions
 const messages = require(__messages);
@@ -22,9 +24,11 @@ require(__config_env);
 app.set("view engine", "ejs");
 app.set("views");
 
-// Adding middleware
+// ------------- MIDDLEWARE ------------
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(logger("dev"));
+app.use(require(__set_multer));
+app.use(corsStop);
 
 // Routes
 const mainRoutes = require(path.join(__routes, "main"));
@@ -39,6 +43,9 @@ const IP = process.env.IP || "localhost";
 
 // Main routes
 app.use("/", mainRoutes);
+
+// Error handler
+app.use(errorHandler);
 
 // 404 handle
 app.use(errorController.get404);

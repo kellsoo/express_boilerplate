@@ -28,10 +28,14 @@ npm start
 npm run dev
 ```
 
+### List of dependencies
+
+body-parser, custom-env, ejs, express, morgan, multer
+
 ### Version
 
 1.0.0
 
 ### Author
 
-kellsoo
+kellsoo - kellsoon@gmail.com
