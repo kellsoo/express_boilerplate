@@ -26,6 +26,7 @@ app.set("views");
 
 // ------------- MIDDLEWARE ------------
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use(logger("dev"));
 app.use(require(__set_multer));
 app.use(corsStop);
