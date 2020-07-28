@@ -2,17 +2,17 @@
 const path = require("path");
 
 // Initialize express app
-const express = require("express");
-const app = express();
+const express = require("express"),
+    app = express();
 
 // Setting of global variables
 require(path.join(__dirname, "config", "global-variables"));
 
 // Middleware modules
-const bodyParser = require("body-parser");
-const logger = require("morgan");
-const corsStop = require(__cors_stop);
-const errorHandler = require(__error_handler);
+const bodyParser = require("body-parser"),
+    logger = require("morgan"),
+    corsStop = require(__cors_stop),
+    errorHandler = require(__error_handler);
 
 // functions
 const messages = require(__messages);
@@ -32,8 +32,8 @@ app.use(require(__set_multer));
 app.use(corsStop);
 
 // Routes
-const mainRoutes = require(path.join(__routes, "main"));
-const errorController = require(path.join(__error_controller));
+const mainRoutes = require(path.join(__routes, "main")),
+    errorController = require(path.join(__error_controller));
 
 // Set static files
 app.use(express.static(path.join(__dirname, "public")));

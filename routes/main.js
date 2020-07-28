@@ -2,14 +2,14 @@
 const path = require("path");
 
 // 3rd party modules
-const express = require("express");
+const express = require("express"),
+    router = express.Router();
 
-const router = express.Router();
+// Controllers
+const { getJson, getView } = require(path.join(__controllers, "main"));
 
-router.get("/", (req, res, next) => {
-    res.status(200).render("index", {
-        pageTitle: "index"
-    });
-});
+router.get("/", getView);
+
+router.get("/json", getJson);
 
 module.exports = router;
