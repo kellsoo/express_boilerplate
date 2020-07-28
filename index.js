@@ -8,6 +8,9 @@ const express = require("express"),
 // Setting of global variables
 require(path.join(__dirname, "config", "global-variables"));
 
+// 3rd party modules
+const { yellow } = require("chalk");
+
 // Middleware modules
 const bodyParser = require("body-parser"),
     logger = require("morgan"),
@@ -53,5 +56,5 @@ app.use(errorController.get404);
 
 // Server listen
 app.listen(PORT, IP, () => {
-    console.log(messages.successFirstMethod(`server started on ${IP}:${PORT}...`));
+    console.log(messages.successFirstMethod(`server started on ${yellow(IP)}:${yellow(PORT)}...`));
 });
