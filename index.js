@@ -15,19 +15,7 @@ const { yellow } = require("chalk");
 const bodyParser = require("body-parser"),
     logger = require("morgan"),
     corsStop = require(__cors_stop),
-    errorHandler = require(__error_handler),
-    i18n = require("i18n");
-
-// internationalization
-i18n.configure({
-    locales: ["en", "de", "sk", "pl", "cz"],
-    defaultLocale: "sk",
-    directory: __dirname + "/locales",
-    register: global,
-    objectNotation: true,
-    updateFiles: true,
-    autoReload: true
-});
+    errorHandler = require(__error_handler);
 
 // functions
 const messages = require(__messages);
@@ -45,11 +33,10 @@ app.use(bodyParser.json());
 app.use(logger("dev"));
 app.use(require(__set_multer));
 app.use(corsStop);
-app.use(i18n.init);
 
 // Routes
 const mainRoutes = require(path.join(__routes, "main")),
-    errorController = require(path.join(__error_controller));
+    apiRoutes = require(path.join(__routes, "api", "main"));
 
 // Set static files
 app.use(express.static(path.join(__dirname, "public")));
@@ -59,13 +46,11 @@ const PORT = process.env.PORT || 5000;
 const IP = process.env.IP || "localhost";
 
 // Main routes
+app.use("/api", apiRoutes);
 app.use("/", mainRoutes);
 
 // Error handler
 app.use(errorHandler);
-
-// 404 handle
-app.use(errorController.get404);
 
 // Server listen
 app.listen(PORT, IP, () => {
