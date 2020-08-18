@@ -15,7 +15,19 @@ const { yellow } = require("chalk");
 const bodyParser = require("body-parser"),
     logger = require("morgan"),
     corsStop = require(__cors_stop),
-    errorHandler = require(__error_handler);
+    errorHandler = require(__error_handler),
+    i18n = require("i18n");
+
+// internationalization
+i18n.configure({
+    locales: ["en", "de", "sk", "pl", "cz"],
+    defaultLocale: "sk",
+    directory: __dirname + "/locales",
+    register: global,
+    objectNotation: true,
+    updateFiles: true,
+    autoReload: true
+});
 
 // functions
 const messages = require(__messages);
@@ -33,6 +45,7 @@ app.use(bodyParser.json());
 app.use(logger("dev"));
 app.use(require(__set_multer));
 app.use(corsStop);
+app.use(i18n.init);
 
 // Routes
 const mainRoutes = require(path.join(__routes, "main")),
