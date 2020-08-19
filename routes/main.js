@@ -9,7 +9,9 @@ const express = require("express"),
 const { getView } = require(path.join(__controllers, "main")),
     { get404 } = require(path.join(__controllers, "error"));
 
-router.get("/", getView);
+// router.get("/", testMiddleware, getView);
+router.route("/").get(getView);
+
 router.use(get404);
 
 module.exports = router;
