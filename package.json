@@ -19,7 +19,6 @@
   "author": "kellsoo",
   "license": "MIT",
   "dependencies": {
-    "body-parser": "*",
     "colors": "^1.4.0",
     "custom-env": "^2.0.1",
     "ejs": "^3.1.5",
