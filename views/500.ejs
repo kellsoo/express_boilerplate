@@ -3,11 +3,14 @@
 
 <body>
     <div class="w3-container w3-teal">
-        <h1>Express Boilerplate v. 2021</h1>
+        <h1><%= statusCode %></h1>
     </div>
-
+    
     <div class="w3-container">
-        <p>file views/index.ejs</p>
+        <h2><%= status %></h2>
+        <h3><%= message %></h3>
+        <h6><%= stack %></h6>
     </div>
+    
 
 <%- include(__end_include) %>

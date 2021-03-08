@@ -1,12 +1,27 @@
 # Express boilerplate
 
-MVC bolierplate for express with EJS template system
+MVC boilerplate for express with EJS template system
 
 # Warning!
 
-Boilerplate in progress!!!
+Boilerplate in progress!!! _And long time it will be_ :D
 
 # Project structure
+
+Before first start it is necessary to create **two folders** _env_ and _logs_
+
+**logs** folder should be empty and in default settings it is public folder (can access from browser!).
+
+```javascript
+app.use('/logs', express.static(path.join(__dirname, 'logs')));
+```
+
+the boilerplate creates four files:
+
+- _system.log_ - where is stored basic system logs
+- _system-error.log_ - where is stored **catch** system logs (when server stops work)
+- _access.log_ - where is stored access logs when who and which endpoint or page try to access
+- _access_error.log_ - where is stored problems by access
 
 ```.env
 # Environment variables

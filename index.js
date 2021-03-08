@@ -1,57 +1,72 @@
 // Node core modules
-const path = require('path');
+const { join } = require('path');
 
 // Initialize express app
-const express = require('express'),
-  app = express();
+const express = require('express');
+const app = express();
 
-// Setting of global variables
-require(path.join(__dirname, 'config', 'global-variables'));
+// Setting of global paths and variables
+require(join(__dirname, 'config', 'global-paths'));
+require(join(__dirname, 'config', 'global-variables'));
+
+// Env variables
+require(__config_env);
+let { PORT, IP, NODE_ENV } = process.env;
 
 // 3rd party modules
-const { yellow } = require('chalk');
+const colors = require('colors');
 
 // Middleware modules
-const logger = require('morgan'),
-  corsStop = require(__cors_stop),
-  errorHandler = require(__error_handler);
+const morgan = require('morgan');
+const corsStop = require(__cors_stop);
 
 // functions
-const messages = require(__messages);
-
-// env
-require(__config_env);
+const { successFirstMethod } = require(__messages);
+const { createSuccessSystemLog, createErrorSystemLog } = require(join(__functions, 'system-logger'));
 
 // Setting template system - EJS
 app.set('view engine', 'ejs');
 app.set('views');
 
 // ------------- MIDDLEWARE ------------
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(logger('dev'));
-app.use(require(__set_multer));
+// Logger
+if (NODE_ENV === 'DEV') app.use(morgan('dev'));
+app.use(morgan('combined', { stream: __access_logs_stream }));
+
 app.use(corsStop);
 
-// Routes
-const mainRoutes = require(path.join(__routes, 'main')),
-  apiRoutes = require(path.join(__routes, 'api', 'main'));
-
 // Set static files
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(join(__dirname, 'public')));
+app.use('/logs', express.static(join(__dirname, 'logs')));
 
-// Environment variables
-const PORT = process.env.PORT || 5000;
-const IP = process.env.IP || 'localhost';
+//  ------- Routes Part -------
+const mainRoutes = require(join(__routes, 'main'));
+const apiRoutes = require(join(__routes, 'api', 'main'));
 
 // Main routes
 app.use('/api', apiRoutes);
 app.use('/', mainRoutes);
 
-// Error handler
-app.use(errorHandler);
+// ----------- Server part -------
+// ENV variables settings
+PORT = PORT || 5000;
+IP = IP || 'localhost';
 
 // Server listen
 app.listen(PORT, IP, () => {
-  console.log(messages.successFirstMethod(`server started on ${yellow(IP)}:${yellow(PORT)}...`));
+  try {
+    console.log(successFirstMethod(`server started on ${IP.yellow}:${PORT.yellow}...`));
+    createSuccessSystemLog(`server started on ${IP}:${PORT}`);
+  } catch (err) {
+    createErrorSystemLog(err);
+  }
+});
+
+process.on('unhandledRejection', (err) => {
+  err = new Error(err);
+  err.name = 'unhandledRejection';
+  createErrorSystemLog(err);
+  process.exit(1);
 });
