@@ -32,7 +32,7 @@ app.set('views');
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 // Logger
-if (NODE_ENV === 'DEV') app.use(morgan('dev'));
+if (NODE_ENV.includes('DEV')) app.use(morgan('dev'));
 app.use(morgan('combined', { stream: __access_logs_stream }));
 
 app.use(corsStop);

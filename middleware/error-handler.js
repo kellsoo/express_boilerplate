@@ -1,11 +1,17 @@
-// Node core components
-const { join } = require('path');
-
 // Classes
 const ErrorResponse = require(__error_response);
-// 3rd party modules
-var statuses = require('statuses');
-var moment = require('moment');
+
+module.exports.view404 = (req, res, next) => {
+  res.status(404).render('404', {
+    pageTitle: '404'
+  });
+};
+
+module.exports.api404 = (req, res, next) => {
+  const error404 = new ErrorResponse(404, 'Page not found!');
+  const errorObj = createErrorObj(error404);
+  res.status(404).json(errorObj);
+};
 
 module.exports.viewErrorHandler = (error, req, res, next) => {
   const errorObj = createErrorObj(error);
@@ -15,26 +21,19 @@ module.exports.viewErrorHandler = (error, req, res, next) => {
 
 module.exports.apiErrorHandler = (error, req, res, next) => {
   const errorObj = createErrorObj(error);
-  const { statusCode, status, message, stack } = errorObj;
-  const date = moment();
-  const obj = {
-    statusCode,
-    status,
-    date,
-    timestamp: date.unix(),
-    message,
-    stack
-  };
-  res.status(statusCode).json(obj);
+  const { statusCode } = errorObj;
+  res.status(statusCode).json(errorObj);
 };
 
 const createErrorObj = (error) => {
   if (typeof error !== 'object' || !error.statusCode) error = new ErrorResponse(500, error);
-  const { statusCode, message, status, stack } = error;
+  const { statusCode, message, status, stack, date, timestamp } = error;
   error.saveToFile();
   const errorObj = {
     statusCode,
     status,
+    date,
+    timestamp,
     message,
     stack
   };

@@ -1,14 +1,17 @@
-const path = require("path");
+const path = require('path');
 
 // 3rd party modules
-const express = require("express"),
-    router = express.Router();
+const express = require('express'),
+  router = express.Router();
 
 // Controllers
-const { getJson } = require(path.join(__controllers, "api", "main")),
-    { get404 } = require(path.join(__controllers, "api", "error"));
+const { getJson } = require(path.join(__controllers, 'api', 'main'));
 
-router.get("/", getJson);
-router.use(get404);
+// Error Handler
+const { apiErrorHandler, api404 } = require(path.join(__middleware, 'error-handler'));
+
+router.get('/', getJson);
+router.use(apiErrorHandler);
+router.use(api404);
 
 module.exports = router;
