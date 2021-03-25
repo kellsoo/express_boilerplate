@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "seeder": "node ./seeder/seeder.js",
     "start": "node index",
     "dev": "nodemon index",
+    "seeder-dev": "nodemon ./seeder/seeder.js",
     "update:packages": "node wipe-dependencies.js && rm -rf node_modules && npm update --save-dev && npm update --save"
   },
   "keywords": [
@@ -25,8 +27,10 @@
     "ejs": "^3.1.5",
     "express": "*",
     "helmet": "^4.4.1",
+    "inquirer": "^8.0.0",
     "moment": "^2.29.1",
     "morgan": "*",
+    "press-any-key": "^0.1.1",
     "statuses": "^1.5.0"
   },
   "devDependencies": {
