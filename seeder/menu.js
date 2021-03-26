@@ -1,3 +1,7 @@
-// 3rd party modules
-const { prompt, Separator } = require('inquirer');
-const pressAnyKey = require('press-any-key');
+// Seeder functions
+const { createPrompt } = require(__seeder_functions);
+
+exports.mainMenu = async () => {
+  console.clear();
+  return await createPrompt();
+};

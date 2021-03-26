@@ -3,35 +3,34 @@ const { join } = require('path');
 
 // Settings
 require(join(__dirname, 'config', 'set'));
+
+// Menu items
+const { mainMenu } = require(__seeder_menu);
+
+// Main
 (async () => {
-  await connection.authenticate();
   console.clear();
   let answer;
+  // await mainMenu();
   let doCycle = true;
   do {
     answer = (await mainMenu()).answer;
+    console.log(answer);
     console.clear();
     switch (answer) {
       case 1:
-        await updateTranslationsDb();
+        // await updateTranslationsDb();
+        console.log(1);
         doCycle = true;
         break;
       case 2:
-        await seed();
-        console.clear();
-        doCycle = true;
-        break;
-      case 3:
-        console.clear();
-        await forceSync();
+        // await seed();
+
+        console.log(2);
+
         doCycle = true;
         break;
       case 666:
-        // answer = (await question('Are you sure?')).answer;
-        // if (answer) doCycle = false;
-        // else {
-        //   doCycle = true;
-        // }
         doCycle = false;
         break;
       default:

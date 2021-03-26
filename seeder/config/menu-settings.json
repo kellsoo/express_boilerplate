@@ -1,0 +1,17 @@
+{
+    "title": "title",
+    "type": "list",
+    "item-1": 1,
+    "prefix": "",
+    "name": "answer",
+    "choices": [
+        {
+            "name": "item-1",
+            "value": 1
+        },
+        {
+            "name": "item-2",
+            "value": 2
+        }
+    ]
+}
