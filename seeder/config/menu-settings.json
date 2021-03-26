@@ -1,8 +1,7 @@
 {
-    "title": "title",
-    "type": "list",
-    "item-1": 1,
+    "message": "title",
     "prefix": "",
+    "type": "list",
     "name": "answer",
     "choices": [
         {

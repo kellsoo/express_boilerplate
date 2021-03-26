@@ -7,8 +7,12 @@ const pressAnyKey = require('press-any-key');
 
 //  ---- Seeder functions
 module.exports.createPrompt = async () => {
-  // console.log('test');
   return await createChoices();
+};
+
+module.exports.question = async (message) => {
+  const settings = { type: 'confirm', message, name: 'result' };
+  return await prompt(settings);
 };
 
 // Helper functions
