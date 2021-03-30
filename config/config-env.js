@@ -1,5 +1,2 @@
-// Node core
-const path = require('path');
-let env = 'example';
-
-require('custom-env').env(env, path.join(__env));
+let envName = 'example';
+require('custom-env').env(envName, __env);

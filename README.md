@@ -23,13 +23,23 @@ the boilerplate creates four files:
 - _access.log_ - where is stored access logs when who and which endpoint or page try to access
 - _access_error.log_ - where is stored problems by access
 
-**logs** folder have to contain file with extension _**.env**_, in instance example.env
+**env** folder have to contain file with extension _**.env**_, in instance _example.env_ which have to contain following code:
 
 ```.env
 # Environment variables
+NODE_ENV = DEV
 PORT = 3000
 IP = 127.0.0.1
 ```
+
+If you would like to change entry environment, it is necessary to change _config-env.js_ file in the folder _config_, which looks like
+
+```javascript
+let envName = 'example';
+require('custom-env').env(envName, __env);
+```
+
+The variable _**envName**_ represents the **prefix** of _env file_ in folder _env_, thus if the _example.env_ is now used, in the variable _**envName**_ has to be stored string 'example'
 
 ## install dependencies
 
