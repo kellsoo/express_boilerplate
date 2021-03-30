@@ -58,7 +58,8 @@ IP = IP || 'localhost';
 // Server listen
 app.listen(PORT, IP, () => {
   try {
-    console.log(successFirstMethod(`server started on ${IP.yellow}:${PORT.yellow}...`));
+    let msg = `server started on ${IP.yellow}:${PORT.yellow}...\n${'NODE_ENV'.magenta} = ${NODE_ENV.yellow}`;
+    console.log(successFirstMethod(msg));
     createSuccessSystemLog(`server started on ${IP}:${PORT}`);
   } catch (err) {
     createErrorSystemLog(err);

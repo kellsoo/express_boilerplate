@@ -1,6 +1,5 @@
 // Node core
-const path = require("path");
-let env;
-env = require("custom-env").env("example", path.join(__env));
+const path = require('path');
+let env = 'example';
 
-module.exports = env;
+require('custom-env').env(env, path.join(__env));
