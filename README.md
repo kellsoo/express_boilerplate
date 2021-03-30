@@ -4,7 +4,7 @@ MVC boilerplate for express with EJS template system
 
 # Warning!
 
-Boilerplate in progress!!! _And long time it will be_ :D
+Boilerplate is in progress!!! _And it will be for **very very long time**_ :D
 
 # Project structure
 
@@ -22,6 +22,8 @@ the boilerplate creates four files:
 - _system-error.log_ - where is stored **catch** system logs (when server stops work)
 - _access.log_ - where is stored access logs when who and which endpoint or page try to access
 - _access_error.log_ - where is stored problems by access
+
+**logs** folder have to contain file with extension _**.env**_, in instance example.env
 
 ```.env
 # Environment variables
