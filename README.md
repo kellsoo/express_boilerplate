@@ -23,7 +23,7 @@ the boilerplate creates four files:
 - _access.log_ - where is stored access logs when who and which endpoint or page try to access
 - _access_error.log_ - where is stored problems by access
 
-**logs** folder have to contain file with extension _**.env**_, in instance example.env
+**env** folder have to contain file with extension _**.env**_, in instance example.env
 
 ```.env
 # Environment variables
