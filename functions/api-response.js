@@ -5,7 +5,7 @@ const { join } = require('path');
 const moment = require('moment');
 
 // Functions
-const statuses = require(statuses);
+const statuses = require('statuses');
 
 module.exports.getSuccessResponse = (code, message, method, data) => {
   const returnObj = getGenericMessage(code, message, method);

@@ -12,6 +12,7 @@ require(join(__dirname, 'config', 'global-variables'));
 // Env variables
 require(__config_env);
 let { PORT, IP, NODE_ENV } = process.env;
+NODE_ENV = NODE_ENV.toUpperCase();
 
 // 3rd party modules
 const colors = require('colors');

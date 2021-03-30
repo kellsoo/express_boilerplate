@@ -1,9 +1,6 @@
 // Node core components
 const { join } = require('path');
 
-// 3rd party modules
-const pressAnyKey = require('press-any-key');
-
 // Settings
 require(join(__dirname, 'config', 'set'));
 
@@ -11,7 +8,7 @@ require(join(__dirname, 'config', 'set'));
 const { question } = require(__seeder_functions);
 
 // Menu items
-const { mainMenu } = require(__seeder_menu);
+const { mainMenu, item1func, item2func } = require(__seeder_menu);
 
 // Main
 (async () => {
@@ -25,23 +22,17 @@ const { mainMenu } = require(__seeder_menu);
     console.clear();
     switch (answer) {
       case 1:
-        console.log(1);
-        await pressAnyKey();
-        doCycle = true;
+        await item1func();
         break;
       case 2:
-        console.log(2);
-        doCycle = true;
+        await item2func();
         break;
       case 666:
-        doCycle = true;
         const { result } = await question('Are you sure?');
         if (!result) break;
         doCycle = false;
-        await pressAnyKey('Good bye...');
         break;
       default:
-        doCycle = true;
         break;
     }
   } while (doCycle);

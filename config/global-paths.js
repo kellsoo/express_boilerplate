@@ -23,6 +23,7 @@ global.__env = join(__root, 'env');
 
 // ------ Functions ------
 global.__functions = join(__root, 'functions');
+global.__api_response = join(__functions, 'api-response');
 global.__messages = join(__functions, 'messages');
 
 // ------ Logs ------
