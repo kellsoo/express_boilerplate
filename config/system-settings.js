@@ -11,7 +11,9 @@ require(join(__dirname, 'global-paths'));
 require(join(__dirname, 'global-variables'));
 
 // config file
-const configVars = JSON.parse(readFileSync(join(__config, 'config.json')));
+// const configVars = JSON.parse(readFileSync(join(__config, 'config.json')));
+const configVars = require(join(__config, 'config'));
+
 // Env variables
 require('custom-env').env(configVars.env, __env);
 let { NODE_ENV } = process.env;
