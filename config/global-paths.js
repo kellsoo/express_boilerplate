@@ -9,7 +9,6 @@ global.__error_response = join(__classes, 'ErrorResponse');
 
 // ------ Config
 global.__config = join(__root, 'config');
-global.__config_env = join(__config, 'config-env');
 
 // ------ Controllers
 global.__controllers = join(__root, 'controllers');
