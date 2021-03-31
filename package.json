@@ -1,7 +1,7 @@
 {
   "name": "express_boilerplate",
-  "version": "1.0.0",
-  "description": "Just boilerplate for express server with ejs templating",
+  "version": "2.0.0",
+  "description": "Just boilerplate for express server with ejs template",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
