@@ -16,7 +16,7 @@ Boilerplate is in progress!!! _And it will be for **very very long time**_ :D
 
 ```javascript
 // Set static files
-app.use('/logs', express.static(path.join(__dirname, 'logs')));
+app.use('/logs', express.static(path.join(__dirname,'..', 'logs')));
 ```
 
 The boilerplate creates four log files after first start:
@@ -78,6 +78,10 @@ NODE_ENV = NODE_ENV.toUpperCase();
 ```
 
 ## Project structure
+
+In progress ;)
+
+## seeder
 
 In progress ;)
 

@@ -40,7 +40,7 @@ app.use(morgan('combined', { stream: __access_logs_stream }));
 app.use(corsStop);
 
 // Set static files
-app.use(express.static(join(__dirname, 'public')));
-app.use('/logs', express.static(join(__dirname, 'logs')));
+app.use(express.static(join(__dirname, '..', 'public')));
+app.use('/logs', express.static(join(__dirname, '..', 'logs')));
 
 module.exports = app;
