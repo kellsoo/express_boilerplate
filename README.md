@@ -1,6 +1,6 @@
 # Express boilerplate
 
-MVC boilerplate for express with EJS template system
+Free MVC boilerplate for express with EJS template system.
 
 ## Warning!
 
@@ -28,7 +28,7 @@ The boilerplate creates four log files after first start:
 
 ### env folder
 
-**env** folder have to contain file with **prefix** _**.env**_, in instance .env.example\_ which have to contain following code:
+**env** folder have to contain file with **prefix** _**.env**_, in instance .env.example which have to contain following code:
 
 ```.env
 # Environment variables
@@ -37,14 +37,16 @@ PORT = 3000
 IP = 127.0.0.1
 ```
 
-There are two possibilities how to set name of env file. Either by file _config.js_ or _config.json_ file, each in _config folder_
-It is necessary to chose which solution you will be use. If you will be use _config.js_, file _system-settings.js_ have to contain following code code.
+There are two possibilities how to set name of env file. Either by file _config.js_ or _config.json_ file, each in _config folder_.
+__It is necessary to use only one solution, either with config.json or config.js!!!__
+
+If _config.js_ will be chosen , file _system-settings.js_ will have to contain following code code.
 
 ```javascript
 const configVars = require(join(__config, 'config'));
 ```
 
-And the _config.js_ file looks like (when the environment is example!):
+And the _config.js_ file will look like (when the environment is example!):
 
 ```javascript
 module.exports = {
@@ -52,13 +54,13 @@ module.exports = {
 };
 ```
 
-If you would like to use _config.json_ solution, the file (_system-settings.js_) have to contain following code
+If _config.json_ solution will be chosen, the file (_system-settings.js_) will have to contain following code
 
 ```javascript
 const configVars = JSON.parse(readFileSync(join(__config, 'config.json')));
 ```
 
-And the _config.json_ file looks like (when the environment is example!):
+And the _config.json_ file will look like (when the environment is example!):
 
 ```json
 {
