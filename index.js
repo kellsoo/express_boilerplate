@@ -1,5 +1,6 @@
 // Node core modules
 const { join } = require('path');
+// test
 
 // System settings
 const app = require(join(__dirname, 'config', 'system-settings'));
