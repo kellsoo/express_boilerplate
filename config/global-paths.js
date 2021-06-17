@@ -36,7 +36,7 @@ global.__access_error_logs = join(__logs, 'access-error.log');
 global.__middleware = join(__root, 'middleware');
 global.__cors_stop = join(__middleware, 'cors-stop');
 global.__error_handler = join(__middleware, 'error-handler');
-global.__controller_wrapper = join(__middleware, 'controller-wrapper');
+global.__middleware_wrapper = join(__middleware, 'middleware-wrapper');
 
 // ------ DB models
 global.__models = join(__root, 'models');

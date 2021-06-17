@@ -1,5 +1,5 @@
 // Controller wrapper
-const controllerWrapper = require(__controller_wrapper);
+const controllerWrapper = require(__middleware_wrapper);
 
 // api response
 const { getSuccessResponse } = require(__api_response);
