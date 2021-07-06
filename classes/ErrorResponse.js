@@ -19,8 +19,26 @@ class ErrorResponse extends Error {
   }
 
   saveToFile() {
-    let msg = `date: ${this.date} :-: statusCode: ${'test'} :-: status: ${this.status} :-: place: ${this.place} :-: message: ${this.message} :-: stack: ${this.stack}\n\n`;
+    let msg = `date: ${this.date} :-: statusCode: ${this.statusCode} :-: status: ${this.status} :-: place: ${this.place} :-: message: ${this.message} :-: stack: ${this.stack}\n\n`;
     __access_error_logs_stream.write(msg);
+  }
+
+  static createError(error, place) {
+    if (!(error instanceof ErrorResponse)) error = new ErrorResponse(500, error, place);
+    return error;
+  }
+
+  createErrorObjAndSaveToLog() {
+    this.saveToLog();
+    return {
+      success: false,
+      statusCode: this.statusCode,
+      status: this.status,
+      date: this.date,
+      timestamp: this.timestamp,
+      message: this.message,
+      // stack: this.stack,
+    };
   }
 }
 

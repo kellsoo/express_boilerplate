@@ -25,6 +25,9 @@ const colors = require('colors');
 // Middleware modules
 const morgan = require('morgan');
 const corsStop = require(__cors_stop);
+const helmet = require('helmet');
+const compression = require('compression');
+const cookieParser = require('cookie-parser');
 
 // Setting template system - EJS
 app.set('view engine', 'ejs');
@@ -33,11 +36,14 @@ app.set('views');
 // ------------- MIDDLEWARE ------------
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(corsStop);
+app.use(helmet());
+app.use(compression());
+app.use(cookieParser());
+
 // Logger
 if (NODE_ENV.includes('DEV')) app.use(morgan('dev'));
 app.use(morgan('combined', { stream: __access_logs_stream }));
-
-app.use(corsStop);
 
 // Set static files
 app.use(express.static(join(__dirname, '..', 'public')));
