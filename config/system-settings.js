@@ -27,6 +27,10 @@ const morgan = require('morgan');
 const corsStop = require(__cors_stop);
 const helmet = require('helmet');
 const compression = require('compression');
+const xss = require('xss-clean');
+const rateLimit = require('express-rate-limit');
+const hpp = require('hpp');
+const cors = require('cors');
 const cookieParser = require('cookie-parser');
 
 // Setting template system - EJS
@@ -36,9 +40,26 @@ app.set('views');
 // ------------- MIDDLEWARE ------------
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(corsStop);
 app.use(helmet());
 app.use(compression());
+
+// Xss clean Prevent Cross Site Scripting
+app.use(xss());
+
+// Enable cors
+app.use(cors());
+
+// Rate Limit
+const limiter = rateLimit({
+  windowMs: 10 * 60 * 1000, // 10 min
+  max: 10000, // max count of requests per windowMs
+});
+
+app.use(limiter);
+
+// Prevent http param pollution
+app.use(hpp());
+
 app.use(cookieParser());
 
 // Logger
