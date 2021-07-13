@@ -1,15 +1,18 @@
 // Node core modules
-const path = require('path');
+const { join } = require('path');
 
 // 3rd party modules
 const express = require('express'),
   router = express.Router();
 
 // Controllers
-const { getView } = require(path.join(__controllers, 'main'));
+const { getView } = require(join(__controllers, 'main'));
 
 // Error Handler
-const { viewErrorHandler, view404 } = require(path.join(__middleware, 'error-handler'));
+const { viewErrorHandler, view404 } = require(join(
+  __middleware,
+  'error-handler'
+));
 
 router.route('/').get(getView);
 

@@ -1,6 +1,5 @@
 // Node core modules
 const { join } = require('path');
-// test
 
 // System settings
 const app = require(join(__dirname, 'config', 'system-settings'));
@@ -16,7 +15,10 @@ app.use('/', mainRoutes);
 // ----------- Server part -------
 // functions
 const { successFirstMethod } = require(__messages);
-const { createSuccessSystemLog, createErrorSystemLog } = require(join(__functions, 'system-logger'));
+const { createSuccessSystemLog, createErrorSystemLog } = require(join(
+  __functions,
+  'system-logger'
+));
 
 // ENV variables settings
 let { PORT, IP, NODE_ENV } = process.env;
@@ -26,7 +28,9 @@ IP = IP || 'localhost';
 // Server listen
 app.listen(PORT, IP, () => {
   try {
-    let msg = `server started on ${IP.yellow}:${PORT.yellow}...\n${'NODE_ENV'.magenta} = ${NODE_ENV.yellow}`;
+    let msg = `server started on ${IP.yellow}:${PORT.yellow}...\n${
+      'NODE_ENV'.magenta
+    } = ${NODE_ENV.yellow}`;
     console.log(successFirstMethod(msg));
     createSuccessSystemLog(`server started on ${IP}:${PORT}`);
   } catch (err) {

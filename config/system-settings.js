@@ -50,12 +50,12 @@ app.use(xss());
 app.use(cors());
 
 // Rate Limit
-const limiter = rateLimit({
-  windowMs: 10 * 60 * 1000, // 10 min
-  max: 10000, // max count of requests per windowMs
-});
-
-app.use(limiter);
+app.use(
+  rateLimit({
+    windowMs: 10 * 60 * 1000, // 10 min
+    max: 10000, // max count of requests per windowMs
+  })
+);
 
 // Prevent http param pollution
 app.use(hpp());
