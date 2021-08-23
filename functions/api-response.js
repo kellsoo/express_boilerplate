@@ -15,6 +15,7 @@ module.exports.getSuccessResponse = (code, method, message) => {
     date,
     timestamp: date.unix(),
     method,
+    message: message || undefined,
   };
 
   if (message) returnObj.message = message;
